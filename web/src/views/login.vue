@@ -68,7 +68,7 @@ export default {
           }else if(response.data=="staff"){
             that.$router.push({ path: '/staff/setting/User' }); 
           }else{
-            that.$router.push({ path: '/admin/setting/User' }); 
+            that.$router.push({ path: '/admin/setting/Adm' }); 
           }
         }
         

@@ -21,6 +21,7 @@
     <el-button type="primary" @click="onMod">修改个人信息</el-button>
   </el-form-item>
 </el-form>
+    <el-button type="primary" @click="onCheck">查看</el-button>
   </div>
 </template>
 
@@ -53,16 +54,21 @@ export default {
         that.form.date = response.data[0].utime;
         that.form.type = response.data[0].type;
         that.form.company = response.data[0].cname;
+        that.$store.commit('upcname',response.data[0].cname);
+        that.$store.commit('upauth',response.data[0].auth);
     },)
     },
         
-        methods: {
-          onMod(){
+    methods: {
+        onMod(){
             if(this.$store.state.utype=="idi"){
               this.$router.push({path:'/setting/UserMod'});
             }else if(this.$store.state.utype=="staff"){
               this.$router.push({path:'/staff/setting/UserMod'});
             }
+        },
+        onCheck(){
+          console.log(this.$store.state);
         }
       }
 }

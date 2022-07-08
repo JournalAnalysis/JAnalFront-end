@@ -6,7 +6,8 @@ const state = { //要设置的全局访问的state对象
   uname: '',
   utype: '',
   auth: '',
-  logid: ''
+  logid: '',
+  cname: ''
 };
  
 const mutations = {
@@ -14,6 +15,12 @@ const mutations = {
         state.uname = uname;
       },uptype(state, utype) {
         state.utype = utype;
+    },
+    upcname(state, cname) {
+        state.cname = cname;
+    },
+    upauth(state, auth) {
+        state.auth = auth;
     }
 };
 const actions = {
@@ -22,7 +29,13 @@ const actions = {
         },
     uptype(context, utype) {
             context.utype = utype;
-        }
+        },
+    upcname(context, cname) {
+            context.cname = cname;
+    },
+    upauth(context, auth) {
+        context.auth = auth;
+    }
 };
  
 export default new Vuex.Store({
@@ -30,7 +43,8 @@ export default new Vuex.Store({
         user: false,
         uname: '',
         utype: '',
-        auth: ''
+        auth: '',
+        cname: ''
     },
     mutations: {
         // 登录
@@ -48,6 +62,12 @@ export default new Vuex.Store({
         },
         uptype(state, utype) {
             state.utype = utype;
+        },
+        upcname(state, cname) {
+            state.cname = cname;
+        },
+        upauth(state, auth) {
+            state.auth = auth;
         }
     },
     actions : {
@@ -56,6 +76,12 @@ export default new Vuex.Store({
           },
         uptype(context, utype) {
             context.utype = utype;
+        },  
+        upcname(context, cname) {
+            context.cname = cname;
+        },
+        upauth(context, auth) {
+            context.auth = auth;
         }
       },
     store : new Vuex.Store({
