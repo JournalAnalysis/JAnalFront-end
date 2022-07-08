@@ -7,13 +7,17 @@
     <el-upload
     class="upload-demo"
     drag
+    :auto-upload="true"
+    :on-success="handleSuccess"
+    :on-error="handleError"
     action="https://jsonplaceholder.typicode.com/posts/"
-    multiple>
+    multiple
+    >
     <i class="el-icon-upload"></i>
     <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
     <div class="el-upload__tip" slot="tip">只能上传log/csv文件</div>
     </el-upload>
-            <el-form-item></el-form-item>
+
         <el-col span="15">  
         <el-input v-model="form.addr" placeholder="请输入日志名称"></el-input>
         </el-col>
@@ -35,24 +39,31 @@
   export default {
     data() {
       return {
+        file:{},
+        fileList:[],
         form:{
           addr:'',
           inf:''
-        },
-            uname:this.getuname,
-            utype:this.getutype
+        }
         }
     },
     computed:{
-    getuname(){
-      return this.$store.state.uname
-    }, 
-    getutype(){
-      return this.$store.state.utype
-    }
+
   },
     methods: {
-
+      getFile(item){
+        console.log(item.file);
+        this.file = item.file;
+      },
+      // onSubmit(){
+      //   const fd = new FormData()
+      //   fd.append('filename', this.file)
+      //   const config = { headers: { 'Content-Type': 'multipart/form-data' }}
+      //   this.$axios.post('http://localhost:8081/user/upload/file', fd, config
+      //   ).then(response => {
+      //   this.$message.success(response.retCode)
+      //   })
+      // }
     },
     created(){
     }
