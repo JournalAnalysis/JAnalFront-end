@@ -53,7 +53,8 @@ export default {
         that.form.date = response.data[0].utime;
         that.form.type = response.data[0].type;
         that.form.company = response.data[0].cname;
-    },)},
+    },)
+    },
         
         methods: {
           onMod(){
