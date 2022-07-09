@@ -108,7 +108,12 @@ import { Form } from 'element-ui';
          this.$axios.post("http://localhost:8081/user/upload/log",this.form).then(function(response){
           console.log(response);
           // that.$message.info(response.data);
+          // location.reload();
+          that.form.loginf = '';
+          that.form.logname = '';
+          that.fileList = [];
           that.$message.success(response.data);
+
         })
       },
       handleRemove(file, fileList) {
