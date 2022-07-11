@@ -6,7 +6,7 @@ const state = { //要设置的全局访问的state对象
   uname: '',
   utype: '',
   uauth: '',
-  logid: 'log',
+  logid: '',
   cname: ''
 };
  

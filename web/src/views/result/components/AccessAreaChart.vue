@@ -77,24 +77,17 @@ export default {
     // myChart.setOption(this.option);
   },
   mounted: function () {
-    // this.option.series[0].data=[
-    //   { name: "北京", value: "100" }
-    // ];
+    var logid = "log";
+    this.$store.commit('uplogid',logid)
     var myChart = echarts.init(document.getElementById("area"));
     var that = this;
-    this.$axios.post("http://localhost:8081/log/area","logid",{
+    this.$axios.post("http://localhost:8081/log/area",this.$store.state.logid,{
           headers: {
             'Content-Type':'application/json'
           }
     }).then(function(response){
-      //that.option.series[0].data[0] = { name: "湖北", value: 200 };
-      // that.option.series[0].data[0].name = "西藏";
-      // that.option.series[0].data[1] = {};
-      // that.option.series[0].data[1].name = "天津";
-      // that.option.series[0].data[1].value = "100";
         console.log(response.data);
       for(var i = 0;response.data[i]!=null;i++){
-        // console.log(i);
         that.option.series[0].data[i] = {name:"",value:0};
         that.option.series[0].data[i].name = response.data[i][0];
         that.option.series[0].data[i].value = response.data[i][1];
@@ -102,10 +95,7 @@ export default {
       console.log(that.option.series[0].data);
       that.option = { ...that.option };
       myChart.setOption(that.option);
-    //that.option.series[0].data = response.data;
     })
-    // this.option = { ...this.option };
-    // myChart.setOption(this.option);
   },
   methods: {
     randomData: function () {

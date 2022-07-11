@@ -36,7 +36,7 @@ export default {
             type: "pie",
             radius: "50%",
             data: [
-             { name: "chrome", value: "100" }
+            //  { name: "chrome", value: "100" }
             ],
             emphasis: {
               itemStyle: {
@@ -53,12 +53,29 @@ export default {
   mounted: function () {
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById("b"));
-    // Vue.axios.get("http://localhost:8081/web/browser").then((response) => {
-    //   this.option.series[0].data = response.data;
-      // 绘制图表
-      this.option = { ...this.option };
-      myChart.setOption(this.option);
-    // });
+    // var that = this;
+    var logid = "log";
+    this.$store.commit('uplogid',logid)
+    
+    this.$axios.post("http://localhost:8081/log/testid",this.$store.state.logid
+    ,{
+          headers: {
+            'Content-Type':'application/json'
+          }
+    }
+    ).then(function(response){
+      console.log(response);
+    })
+    //     console.log(response.data);
+    //   for(var i = 0;response.data[i]!=null;i++){
+    //     that.option.series[0].data[i] = {name:"",value:0};
+    //     that.option.series[0].data[i].name = response.data[i][0];
+    //     that.option.series[0].data[i].value = response.data[i][1];
+    //   }
+    //   console.log(that.option.series[0].data);
+    //   that.option = { ...that.option };
+    //   myChart.setOption(that.option);
+    // })
   },
 };
 </script>
