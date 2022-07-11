@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       loginForm: {
-        //username和password默认为空
+        //username和upassword默认为空
         uname: '',
         upassword: ''
       },
@@ -52,7 +52,7 @@ export default {
 
     login(){  
       var that = this;
-      if(this.loginForm.uname==''||this.loginForm.password==''){
+      if(this.loginForm.uname==''||this.loginForm.upassword==''){
         this.$message.error('请输入用户名和密码！');
       }else{
         this.$store.commit('upname',this.loginForm.uname);
