@@ -52,10 +52,10 @@ export default {
       this.$axios.post("http://localhost:8081/user/inf",this.userinf).then(function(response){
         that.form.name = response.data[0].uname;
         that.form.date = response.data[0].utime;
-        that.form.type = response.data[0].type;
+        that.form.type = response.data[0].utype;
         that.form.company = response.data[0].cname;
         that.$store.commit('upcname',response.data[0].cname);
-        that.$store.commit('upauth',response.data[0].auth);
+        that.$store.commit('upauth',response.data[0].uauth);
     },)
     },
         

@@ -6,7 +6,7 @@
         <el-input type="text" v-model="ruleForm.uname" auto-complete="off" placeholder="用户名"></el-input>
       </el-form-item>
       <el-form-item prop="password" label="请输入密码：">
-        <el-input type="password" v-model="ruleForm.password" auto-complete="off" placeholder="密码" show-password></el-input>
+        <el-input type="password" v-model="ruleForm.upassword" auto-complete="off" placeholder="密码" show-password></el-input>
       </el-form-item>
       <el-form-item prop="verpassword" label="请确认密码">
         <el-input type="password" v-model="ruleForm.verpassword" auto-complete="off" placeholder="确认密码" show-password></el-input>
@@ -28,7 +28,7 @@
           placeholder="企业信息"
           show-word-limit></el-input></el-form-item>
       <el-form-item prop="email" label="请输入邮箱：">
-        <el-input type="text" v-model="ruleForm.email" auto-complete="off" placeholder="邮箱"></el-input>
+        <el-input type="text" v-model="ruleForm.uemail" auto-complete="off" placeholder="邮箱"></el-input>
       </el-form-item>
       <!-- <el-form-item style="width:50%;">
         <el-button type="primary" @click="sendcode()" :loading="sendcode">发送验证码</el-button>
@@ -57,25 +57,25 @@ export default {
         companyname:'',
         companyinf:'',
         uname:'',
-        password:'',
+        upassword:'',
         verpassword:'',
-        email:'',
+        uemail:'',
         emailcode:'',
         IdRule:'1',
-        type:'',
+        utype:'',
         utime:''
       },
       //rules前端验证
       rules: {
         uname: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-        password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+        upassword: [{ required: true, message: '请输入密码', trigger: 'blur' }],
         companyname: [{ required: true, message: '请输入企业名称', trigger: 'blur' }],
         companyinf: [{ required: true, message: '请输入企业信息', trigger: 'blur' }],
         verpassword: [
           { required: true, message: '请确认密码', trigger: 'blur' },
           { validator: validatePass, trigger: 'blur'}
         ],
-        email: [{ required: true, message: '请输入邮箱', trigger: 'blur' }],
+        uemail: [{ required: true, message: '请输入邮箱', trigger: 'blur' }],
         emailcode: [{ required: true, message: '请输入验证码', trigger: 'blur' }],
       },
     }
@@ -95,15 +95,15 @@ export default {
       //验证
       var isReady = true;
       if(this.ruleForm.IdRule=='1'){
-        if(this.ruleForm.email==''||this.ruleForm.uname==''||this.ruleForm.password==''||this.ruleForm.verpassword==''||this.ruleForm.emailcode==''){
+        if(this.ruleForm.uemail==''||this.ruleForm.uname==''||this.ruleForm.upassword==''||this.ruleForm.verpassword==''||this.ruleForm.emailcode==''){
           isReady = false;
         }
       }else{
-        if(this.ruleForm.email==''||this.ruleForm.uname==''||this.ruleForm.password==''||this.ruleForm.verpassword==''||this.ruleForm.emailcode==''||this.ruleForm.companyname==''||this.ruleForm.companyinf==''){
+        if(this.ruleForm.uemail==''||this.ruleForm.uname==''||this.ruleForm.upassword==''||this.ruleForm.verpassword==''||this.ruleForm.emailcode==''||this.ruleForm.companyname==''||this.ruleForm.companyinf==''){
           isReady = false;
         }
       }
-      if(this.ruleForm.password!=this.ruleForm.verpassword){
+      if(this.ruleForm.upassword!=this.ruleForm.verpassword){
         isReady = false;
       }
 
@@ -119,9 +119,9 @@ export default {
         this.ruleForm.utime = time;
         // console.log(date);
         if(this.ruleForm.IdRule=='1'){
-          this.ruleForm.type="idi";
+          this.ruleForm.utype="ind";
         }else if(this.ruleForm.IdRule=='2'){
-          this.ruleForm.type="adm";
+          this.ruleForm.utype="adm";
         }
         this.$axios.post("http://localhost:8081/adm/register",this.ruleForm).then(function(response){
           console.log(response);

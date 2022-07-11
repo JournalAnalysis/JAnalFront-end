@@ -5,8 +5,8 @@ Vue.use(Vuex);
 const state = { //要设置的全局访问的state对象
   uname: '',
   utype: '',
-  auth: '',
-  logid: '',
+  uauth: '',
+  logid: 'log',
   cname: ''
 };
  
@@ -20,7 +20,10 @@ const mutations = {
         state.cname = cname;
     },
     upauth(state, auth) {
-        state.auth = auth;
+        state.uauth = auth;
+    },
+    uplogid(state, logid) {
+        state.logid = logid;
     }
 };
 const actions = {
@@ -34,7 +37,10 @@ const actions = {
             context.cname = cname;
     },
     upauth(context, auth) {
-        context.auth = auth;
+        context.uauth = auth;
+    },
+    uplogid(context, logid) {
+        context.logid = logid;
     }
 };
  
@@ -43,7 +49,8 @@ export default new Vuex.Store({
         user: false,
         uname: '',
         utype: '',
-        auth: '',
+        uauth: '',
+        logid: '',
         cname: ''
     },
     mutations: {
@@ -67,7 +74,10 @@ export default new Vuex.Store({
             state.cname = cname;
         },
         upauth(state, auth) {
-            state.auth = auth;
+            state.uauth = auth;
+        },
+        uplogid(state, logid) {
+            state.logid = logid;
         }
     },
     actions : {
@@ -81,7 +91,10 @@ export default new Vuex.Store({
             context.cname = cname;
         },
         upauth(context, auth) {
-            context.auth = auth;
+            context.uauth = auth;
+        },
+        uplogid(context, logid) {
+            context.logid = logid;
         }
       },
     store : new Vuex.Store({

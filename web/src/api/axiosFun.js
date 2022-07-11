@@ -25,6 +25,8 @@ const loginreq = (method, url, params) => {
         ]
     }).then(res => res.data);
 };
+
+
 // 通用公用方法
 const req = (method, url, params) => {
     return axios({

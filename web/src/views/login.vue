@@ -6,7 +6,7 @@
         <el-input type="text" v-model="loginForm.uname" auto-complete="off" placeholder="账号"></el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input type="password" show-password v-model="loginForm.password" auto-complete="off" placeholder="密码"></el-input>
+        <el-input type="password" show-password v-model="loginForm.upassword" auto-complete="off" placeholder="密码"></el-input>
       </el-form-item>
       <el-link type="primary" @click="register()">注册</el-link>
       <el-form-item style="width:100%;">
@@ -23,12 +23,12 @@ export default {
       loginForm: {
         //username和password默认为空
         uname: '',
-        password: ''
+        upassword: ''
       },
       //验证非空
       rules: {
         uname: [{ required: true, message: '请输入账号', trigger: 'blur' }],
-        password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+        upassword: [{ required: true, message: '请输入密码', trigger: 'blur' }],
       }
     }
   },

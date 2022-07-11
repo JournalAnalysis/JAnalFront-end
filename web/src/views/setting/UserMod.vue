@@ -37,7 +37,7 @@ import Pagination from '../../components/Pagination'
       };
       return {
         ruleForm: {
-            password:'',
+            upassword:'',
             checkpass:'',
             ccode:'',
             emailcode:'',
