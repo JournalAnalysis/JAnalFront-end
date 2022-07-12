@@ -10,9 +10,6 @@
         <el-input disabled v-model="form.name"></el-input>
       </el-col>
     </el-form-item>
-    <el-form-item label="注册日期"><el-col span="10">  
-        <el-input disabled v-model="form.date"></el-input></el-col>
-    </el-form-item>
     <el-form-item label="企业名称"><el-col span="10">  
         <el-input disabled v-model="form.companyname"></el-input></el-col>
     </el-form-item>
@@ -36,13 +33,29 @@ export default {
   data() {
     return {
         form: {
-            name: '用户名',
-            date:'注册日期',
-            companyname:'用户类型',
-            companyinf:'所属企业',
-            companycode:'AAAA-BBBB-CCCC'
+            name: this.$store.state.uname,
+            companyname:'',
+            companyinf:'',
+            companycode:''
         },
+        userinf:{
+          uname: '',
+          utype: '',
+        }
     }
+  },
+  created(){
+      this.userinf.uname = this.$store.state.uname;
+      this.userinf.utype = this.$store.state.utype;
+      var that = this;
+      this.$axios.post("http://localhost:8081/user/adminf",this.userinf).then(function(response){
+        console.log(response);
+        that.form.companyname = response.data[0].cname;
+        that.form.companyinf = response.data[0].cinf;
+        that.form.companycode = response.data[0].ccode;
+        that.$store.commit('upcname',response.data[0].cname);
+        that.$store.commit('upauth',"high");
+    },)
   },
   methods: {
     onMod(){

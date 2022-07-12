@@ -29,7 +29,7 @@
         :picker-options="pickerOptions">
         </el-date-picker>
   </div></el-form-item>
-      <el-form-item></el-form-item>
+
       <el-form-item>
         <el-button size="small" type="primary" icon="el-icon-search" @click="search">搜索</el-button>
       </el-form-item>
@@ -217,7 +217,17 @@ export default {
    * 创建完毕
    */
   created() {
-    this.getdata(this.formInline)
+    // this.getdata(this.formInline)
+    var that=this;
+    var uname = this.$store.state.uname;
+    this.$axios.post('http://localhost:8081/log/getRecent',uname,{
+          headers: {
+            'Content-Type':'application/json'
+          }
+    }).then(Response=>{
+      this.listData=Response.data;
+       //console.log(Response);
+    })
   },
 
   /**

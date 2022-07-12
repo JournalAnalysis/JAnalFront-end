@@ -19,8 +19,8 @@ const mutations = {
     upcname(state, cname) {
         state.cname = cname;
     },
-    upauth(state, auth) {
-        state.uauth = auth;
+    upauth(state, uauth) {
+        state.uauth = uauth;
     },
     uplogid(state, logid) {
         state.logid = logid;
@@ -36,8 +36,8 @@ const actions = {
     upcname(context, cname) {
             context.cname = cname;
     },
-    upauth(context, auth) {
-        context.uauth = auth;
+    upauth(context, uauth) {
+        context.uauth = uauth;
     },
     uplogid(context, logid) {
         context.logid = logid;
@@ -78,8 +78,8 @@ export default new Vuex.Store({
         upcname(state, cname) {
             state.cname = cname;
         },
-        upauth(state, auth) {
-            state.uauth = auth;
+        upauth(state, uauth) {
+            state.uauth = uauth;
         },
         uplogid(state, logid) {
             state.logid = logid;
@@ -95,8 +95,8 @@ export default new Vuex.Store({
         upcname(context, cname) {
             context.cname = cname;
         },
-        upauth(context, auth) {
-            context.uauth = auth;
+        upauth(context, uauth) {
+            context.uauth = uauth;
         },
         uplogid(context, logid) {
             context.logid = logid;
