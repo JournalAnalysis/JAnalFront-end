@@ -49,17 +49,25 @@ export default {
   },
   mounted: function () {
     // 基于准备好的dom，初始化echarts实例
-     var myChart = echarts.init(document.getElementById("ip"));
-    // Vue.axios.get("http://localhost:8081/web/company").then((response) => {
-    //   var names = response.data.map((item) => item.name);
-
-    //   var values = response.data.map((item) => item.value);
-    //   this.option.yAxis.data = names;
-    //   this.option.series[0].data = values;
-    //   // 绘制图表
-      this.option = { ...this.option };
-      myChart.setOption(this.option);
-    // });
+    var myChart = echarts.init(document.getElementById("ip"));
+    var that = this;
+    this.$axios.post("http://localhost:8081/log/isp",this.$store.state.logid
+    ,{
+          headers: {
+            'Content-Type':'application/json'
+          }
+    }
+    ).then(function(response){
+      console.log(response.data);
+      for(var i = 0;response.data[i]!= null;i++){
+        // that.option.series[0].data[i] = {name:"",value:0};
+        that.option.yAxis.data[i] = response.data[i][0];
+        that.option.series[0].data[i] = response.data[i][1];
+      }
+      console.log(that.option.series[0].data);
+      that.option = { ...that.option };
+      myChart.setOption(that.option);
+     })
   },
 };
 </script>

@@ -60,11 +60,6 @@ export default {
               show: false,
             },
             data: [
-              { value: 1048, name: "Search Engine" },
-              { value: 735, name: "Direct" },
-              { value: 580, name: "Email" },
-              { value: 484, name: "Union Ads" },
-              { value: 300, name: "Video Ads" },
             ],
           },
         ],
@@ -73,12 +68,23 @@ export default {
   },
   mounted: function () {
     var myChart = echarts.init(document.getElementById("search"));
-    // Vue.axios.get("http://localhost:8081/web/search").then((response) => {
-    //   this.option.series[0].data = response.data;
-      // 绘制图表
-      this.option = { ...this.option };
-      myChart.setOption(this.option);
-    // });
+    var that = this;
+    //console.log(this.$store.state.logid);
+    this.$axios.post("http://localhost:8081/log/client",this.$store.state.logid,{
+          headers: {
+            'Content-Type':'application/json'
+          }
+    }).then(function(response){
+      console.log(response.data);
+      for(var i = 0;response.data[i]!=null;i++){
+        that.option.series[0].data[i] = {name:"",value:0};
+        that.option.series[0].data[i].name = response.data[i][0];
+        that.option.series[0].data[i].value = response.data[i][1];
+      }
+      // console.log(that.option.series[0].data);
+      that.option = { ...that.option };
+      myChart.setOption(that.option);
+    })
   },
 };
 </script>

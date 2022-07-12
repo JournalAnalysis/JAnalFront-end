@@ -58,8 +58,16 @@ export default {
   methods:{
     checkResult(i, item){
      // console.log(item.logid);
+     var that = this;
       this.$store.commit('uplogid',item.logid);
       console.log(this.$store.state.logid);
+      if(this.$store.state.utype=="idi"){
+            that.$router.push({ path: '/result/Result' }); 
+          }else if(this.$store.state.utype=="staff"){
+            that.$router.push({ path: '/staff/result/Result' }); 
+          }else{
+            that.$router.push({ path: '/admin/result/Result' }); 
+          }
     }
   },
   /**

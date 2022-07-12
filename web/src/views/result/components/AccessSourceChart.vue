@@ -39,9 +39,9 @@ export default {
             type: "pie",
             radius: "50%",
             data: [
-              // { value: 1048, name: "Search Engine" },
-              // { value: 735, name: "Direct" },
-              // { value: 580, name: "Email" },
+              //  { name: "Search Engine",value: 1048},
+              // { name: "Direct",value: 735 },
+              // // { value: 580, name: "Email" },
               // { value: 484, name: "Union Ads" },
               // { value: 300, name: "Video Ads" },
             ],
@@ -60,26 +60,24 @@ export default {
   mounted: function () {
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById("source"));
-    // var logid = "log";
-    // this.$store.commit('uplogid',logid)
-    // var that = this;
-    // this.$axios.post("http://localhost:8081/log/source",this.$store.state.logid
-    // ,{
-    //       headers: {
-    //         'Content-Type':'application/json'
-    //       }
-    // }
-    // ).then(function(response){
-    //   console.log(response);
-    //   for(var i = 0;response.data[i]!= null;i++){
-    //     that.option.series[0].data[i] = {name:"",value:0};
-    //     that.option.series[0].data[i].name = response.data[i][0];
-    //     that.option.series[0].data[i].value = response.data[i][1];
-    //   }
-    //   console.log(that.option.series[0].data);
-    //   that.option = { ...that.option };
-    //   myChart.setOption(that.option);
-    //  })
+    var that = this;
+    this.$axios.post("http://localhost:8081/log/source",this.$store.state.logid
+    ,{
+          headers: {
+            'Content-Type':'application/json'
+          }
+    }
+    ).then(function(response){
+      console.log(response.data);
+      for(var i = 0;response.data[i]!= null;i++){
+        that.option.series[0].data[i] = {name:"",value:0};
+        that.option.series[0].data[i].name = response.data[i][0];
+        that.option.series[0].data[i].value = response.data[i][1];
+      }
+      //console.log(that.option.series[0].data);
+      that.option = { ...that.option };
+      myChart.setOption(that.option);
+     })
   },
 };
 </script>

@@ -62,6 +62,11 @@ export default new Vuex.Store({
         // 退出
         logout(state, user) {
             state.user = "";
+            state.uname = "";
+            state.utype = "";
+            state.uauth = "";
+            state.logid = "";
+            state.cname = "";
             localStorage.setItem("userInfo", "");
         },
         upname(state, uname) {

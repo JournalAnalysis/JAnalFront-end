@@ -29,14 +29,14 @@ export default {
         },
         xAxis: {
           type: "category",
-          data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+          data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun","dhj","dfgh","hgtresw"],
         },
         yAxis: {
           type: "value",
         },
         series: [
           {
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            data: [820, 932, 901, 934, 1290, 1330, 1320, 678, 3456],
             type: "line",
             smooth: true,
           },
@@ -46,14 +46,25 @@ export default {
   },
   mounted: function () {
     // 基于准备好的dom，初始化echarts实例
-     var myChart = echarts.init(document.getElementById("time"));
-    // Vue.axios.get("http://localhost:8081/web/time").then((response) => {
-    //   this.option.xAxis.data = response.data.map((item) => item.name);
-    //   this.option.series[0].data = response.data.map((item) => item.value);
-      // 绘制图表
-      this.option = { ...this.option };
-      myChart.setOption(this.option);
-    // });
+    var myChart = echarts.init(document.getElementById("time"));
+    var that = this;
+    // this.$axios.post("http://localhost:8081/log/time",this.$store.state.logid
+    // ,{
+    //       headers: {
+    //         'Content-Type':'application/json'
+    //       }
+    // }
+    // ).then(function(response){
+    //   console.log(response.data);
+    //   for(var i = 0;response.data[i]!= null;i++){
+    //     // that.option.series[0].data[i] = {name:"",value:0};
+    //     that.option.xAxis.data[i] = response.data[i][0];
+    //     that.option.series[0].data[i] = response.data[i][1];
+    //   }
+    //   //console.log(that.option.series[0].data);
+      that.option = { ...that.option };
+      myChart.setOption(that.option);
+    //  })
   },
 };
 </script>

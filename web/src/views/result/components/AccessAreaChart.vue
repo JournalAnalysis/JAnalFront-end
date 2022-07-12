@@ -79,13 +79,13 @@ export default {
   mounted: function () {
     var myChart1 = echarts.init(document.getElementById("area"));
     var that = this;
-    console.log(this.$store.state.logid);
+    //console.log(this.$store.state.logid);
     this.$axios.post("http://localhost:8081/log/area",this.$store.state.logid,{
           headers: {
             'Content-Type':'application/json'
           }
     }).then(function(response){
-      console.log(response);
+      console.log(response.data);
       for(var i = 0;response.data[i]!=null;i++){
         that.option.series[0].data[i] = {name:"",value:0};
         that.option.series[0].data[i].name = response.data[i][0];

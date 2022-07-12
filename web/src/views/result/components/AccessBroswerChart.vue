@@ -65,7 +65,7 @@ export default {
           }
     }
     ).then(function(response){
-      console.log(response);
+      console.log(response.data);
       for(var i = 0;response.data[i]!= null;i++){
         that.option.series[0].data[i] = {name:"",value:0};
         that.option.series[0].data[i].name = response.data[i][0];
