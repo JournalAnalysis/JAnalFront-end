@@ -77,16 +77,15 @@ export default {
     // myChart.setOption(this.option);
   },
   mounted: function () {
-    var logid = "log";
-    this.$store.commit('uplogid',logid)
-    var myChart = echarts.init(document.getElementById("area"));
+    var myChart1 = echarts.init(document.getElementById("area"));
     var that = this;
+    console.log(this.$store.state.logid);
     this.$axios.post("http://localhost:8081/log/area",this.$store.state.logid,{
           headers: {
             'Content-Type':'application/json'
           }
     }).then(function(response){
-        // console.log(response.data);
+      console.log(response);
       for(var i = 0;response.data[i]!=null;i++){
         that.option.series[0].data[i] = {name:"",value:0};
         that.option.series[0].data[i].name = response.data[i][0];
@@ -94,7 +93,7 @@ export default {
       }
       // console.log(that.option.series[0].data);
       that.option = { ...that.option };
-      myChart.setOption(that.option);
+      myChart1.setOption(that.option);
     })
   },
   methods: {

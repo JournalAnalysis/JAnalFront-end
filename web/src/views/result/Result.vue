@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <ul class="charts">
+      <label value="日志编号为：">{{logid}}</label>
       <li><ISPChart /></li>
       <li><TopNChart /></li>
       <li><AccessTimeChart /></li>
@@ -55,6 +56,11 @@ import AccessOSChart from './components/AccessBroswerChart.vue'
 import AccessAreaChart from './components/AccessAreaChart.vue'
 export default {
   name: 'Result',
+  data(){
+    return{
+      logid : this.$store.state.logid,
+    }
+  },
   components: {
     AccessAreaChart,
     ISPChart,
@@ -63,6 +69,12 @@ export default {
     AccessSourceChart,
     SearchEnginesChart,
     AccessOSChart
+  },
+  
+  created(){
+    // this.$axios.post('http://localhost:8081/log/connection').then(Response=>{
+    //   console.log(Response);
+    // })
   },
  mounted() {
     

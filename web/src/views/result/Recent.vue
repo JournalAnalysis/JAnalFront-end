@@ -57,7 +57,9 @@ export default {
   },
   methods:{
     checkResult(i, item){
-      console.log(item);
+     // console.log(item.logid);
+      this.$store.commit('uplogid',item.logid);
+      console.log(this.$store.state.logid);
     }
   },
   /**
@@ -65,9 +67,14 @@ export default {
    */
   created() {
     var that=this;
-    this.$axios.post('http://localhost:8081/log/getRecent').then(Response=>{
+    var uname = this.$store.state.uname;
+    this.$axios.post('http://localhost:8081/log/getRecent',uname,{
+          headers: {
+            'Content-Type':'application/json'
+          }
+    }).then(Response=>{
       this.listData=Response.data;
-      // console.log(Response);
+       //console.log(Response);
     })
   }
 }

@@ -50,12 +50,13 @@ export default {
       },
     };
   },
+
+  created(){
+
+  },
   mounted: function () {
     // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById("b"));
-    // var that = this;
-    var logid = "log";
-    this.$store.commit('uplogid',logid)
+    var myChart2 = echarts.init(document.getElementById("b"));
     var that = this;
     this.$axios.post("http://localhost:8081/log/browser",this.$store.state.logid
     ,{
@@ -64,7 +65,7 @@ export default {
           }
     }
     ).then(function(response){
-      //console.log(response);
+      console.log(response);
       for(var i = 0;response.data[i]!= null;i++){
         that.option.series[0].data[i] = {name:"",value:0};
         that.option.series[0].data[i].name = response.data[i][0];
@@ -72,7 +73,7 @@ export default {
       }
       //console.log(that.option.series[0].data);
       that.option = { ...that.option };
-      myChart.setOption(that.option);
+      myChart2.setOption(that.option);
      })
   },
 };
