@@ -86,13 +86,13 @@ export default {
             'Content-Type':'application/json'
           }
     }).then(function(response){
-        console.log(response.data);
+        // console.log(response.data);
       for(var i = 0;response.data[i]!=null;i++){
         that.option.series[0].data[i] = {name:"",value:0};
         that.option.series[0].data[i].name = response.data[i][0];
         that.option.series[0].data[i].value = response.data[i][1];
       }
-      console.log(that.option.series[0].data);
+      // console.log(that.option.series[0].data);
       that.option = { ...that.option };
       myChart.setOption(that.option);
     })

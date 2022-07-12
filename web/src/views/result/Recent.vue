@@ -12,22 +12,22 @@
     <el-table size="small" :data="listData" highlight-current-row border style="width: 100%;">
       <!-- <el-table-column align="center" type="index" width="60">
       </el-table-column> -->
-      <el-table-column sortable prop="id" label="编号" width="120" show-overflow-tooltip>
+      <el-table-column sortable prop="logid" label="编号" width="200" show-overflow-tooltip>
       </el-table-column>
-      <el-table-column sortable prop="logname" label="日志名称" width="120" show-overflow-tooltip>
+      <el-table-column sortable prop="logname" label="日志名称" width="140" show-overflow-tooltip>
               <!-- <template slot-scope="scope">
                     <span>{{scope.row[scope.column.property]}}</span>
               </template>         -->
       </el-table-column>
-      <el-table-column sortable prop="uptime" label="上传日期" width="120" show-overflow-tooltip>
+      <el-table-column sortable prop="uptime" label="上传日期" width="140" show-overflow-tooltip>
       </el-table-column>
       <el-table-column sortable prop="loginf" label="日志描述" width="140" show-overflow-tooltip>
       </el-table-column>
-      <el-table-column sortable prop="cname" label="所属企业" width="120" show-overflow-tooltip>
+      <el-table-column sortable prop="cname" label="所属企业" width="140" show-overflow-tooltip>
       </el-table-column>
       <el-table-column align="center" label="操作" min-width="150">
         <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">查看</el-button>
+          <el-button size="mini" @click="checkResult(scope.$index, scope.row)">查看</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -43,6 +43,7 @@ export default {
   data() {
     return {
       listData: [{
+        logid:'',
         cname:'',
         loginf:'',
         logname:'',
@@ -54,17 +55,21 @@ export default {
   // 注册组件
   components: {
   },
-
+  methods:{
+    checkResult(i, item){
+      console.log(item);
+    }
+  },
   /**
    * 创建完毕
    */
-  // created() {
-  //   var that=this;
-  //   this.$axios.get('http://localhost:8081/log/getRecent').then(Response=>{
-  //     this.listData=Response.data;
-  //     console.log(Response);
-  //   })
-  // }
+  created() {
+    var that=this;
+    this.$axios.post('http://localhost:8081/log/getRecent').then(Response=>{
+      this.listData=Response.data;
+      // console.log(Response);
+    })
+  }
 }
 
 </script>

@@ -10,16 +10,16 @@
         <el-radio v-model="form.radio" label="2">输入数据库地址</el-radio>
     </el-form-item>
     <el-form-item label="地址"><el-col span="15">  
-        <el-input v-model="form.addr" placeholder="请输入地址"></el-input></el-col>
+        <el-input v-model="form.loglink" placeholder="请输入地址"></el-input></el-col>
     </el-form-item>
     <el-form-item label="日志名称"><el-col span="15">  
-        <el-input v-model="form.name" placeholder="请输入日志名称"></el-input></el-col>
+        <el-input v-model="form.logname" placeholder="请输入日志名称"></el-input></el-col>
     </el-form-item>
     <el-form-item label="日志描述">
         <el-col span="15">  
         <el-input
           type="textarea"
-          v-model="form.inf"
+          v-model="form.loginf"
           maxlength="30"
           placeholder="请输入描述"
           show-word-limit>
@@ -39,17 +39,39 @@ export default {
   data() {
     return {
         form: {
-            radio: '1',
-            date:'注册日期',
-            companyname:'用户类型',
-            companyinf:'所属企业',
-            companycode:'AAAA-BBBB-CCCC'
+          loginf:'',
+          logname:'',
+          uname:'',
+          cname:'',
+          logauth:'',
+          uptime:'',
+          loglink:'',
+          radio: '1'
         },
     }
   },
   methods: {
-    onMod(){
-      this.$router.push({path:'/setting/UserMod'})
+    onSubmit(){
+      var that = this;
+        this.form.uname = this.$store.state.uname;
+        this.form.cname = this.$store.state.cname;
+        this.form.logauth = this.$store.state.auth;
+        let year = new Date().getFullYear();
+        let month = new Date().getMonth() +1;
+        let day = new Date().getDate();
+        let hour = new Date().getHours();
+        let minute = new Date().getMinutes();
+        let second = new Date().getSeconds();
+        let time = year + '-' + month + '-' + day + ' ' + hour +':'+ minute +':'+ second;
+        this.form.uptime = time;
+        console.log(this.form);
+         this.$axios.post("http://localhost:8081/user/upload/address",this.form).then(function(response){
+          console.log(response);
+          that.form.loginf = '';
+          that.form.logname = '';
+          that.form.loglink = '';
+          that.$message.success(response.data);
+        })
     }
   }
 }
