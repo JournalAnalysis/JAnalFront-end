@@ -9,6 +9,7 @@
       <el-breadcrumb-item>交易订单</el-breadcrumb-item>
     </el-breadcrumb> -->
     <!--列表-->
+    <label>显示三天内上传的数据</label>
     <el-table size="small" :data="listData" highlight-current-row border style="width: 100%;">
       <!-- <el-table-column align="center" type="index" width="60">
       </el-table-column> -->
@@ -23,7 +24,7 @@
       </el-table-column>
       <el-table-column sortable prop="loginf" label="日志描述" width="140" show-overflow-tooltip>
       </el-table-column>
-      <el-table-column sortable prop="cname" label="所属企业" width="140" show-overflow-tooltip>
+      <el-table-column sortable prop="logstate" label="处理状态" width="140" show-overflow-tooltip>
       </el-table-column>
       <el-table-column align="center" label="操作" min-width="150">
         <template slot-scope="scope">
@@ -75,14 +76,27 @@ export default {
    */
   created() {
     var that=this;
-    var uname = this.$store.state.uname;
-    this.$axios.post('http://localhost:8081/log/getRecent',uname,{
+         let year = new Date().getFullYear();
+        let month = new Date().getMonth() +1;
+        let day = new Date().getDate();
+        let hour = new Date().getHours();
+        let minute = new Date().getMinutes();
+        let second = new Date().getSeconds();
+        let end = year + '-' + month + '-' + day + ' ' + hour +':'+ minute +':'+ second;
+    const start = new Date();
+    start.setTime(start.getTime() - 3600 * 1000 * 24 * 3);
+    console.log(end+start);
+    this.$axios.post('http://localhost:8081/log/getRecent',{
+      uname:this.$store.state.uname,
+      uptime: end,
+      loginf: start
+    },{
           headers: {
             'Content-Type':'application/json'
           }
     }).then(Response=>{
-      this.listData=Response.data;
-       //console.log(Response);
+       this.listData=Response.data;
+       console.log(Response);
     })
   }
 }

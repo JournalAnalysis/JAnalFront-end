@@ -11,7 +11,7 @@ export default {
 
       option: {
         title: {
-          text: "搜索引擎",
+          text: "操作系统",
           left: "center",
           top: "5%",
           textStyle: {
