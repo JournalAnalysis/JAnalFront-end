@@ -5,16 +5,17 @@
   <div>
     <el-form :inline="true" :model="formInline" class="user-search">
       <el-form-item label="搜索：">
-        <el-input size="small" v-model="formInline.logname" label="日志名称" placeholder="输入日志名称"></el-input>
+        <el-input size="small" clearable v-model="formInline.logname" label="日志名称" placeholder="输入日志名称"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-input size="small" v-model="formInline.uname" label="上传用户" placeholder="输入上传用户名"></el-input>
+        <el-input size="small" clearable v-model="formInline.uname" label="上传用户" placeholder="输入上传用户名"></el-input>
       </el-form-item>
       <el-form-item label="选择日期">
         <div class="block">
         <el-date-picker
+        clearable="false"
         v-model="formInline.s_time"
-        type="daterange"
+        type="datetimerange"
         align="right"
         unlink-panels
         range-separator="至"
@@ -173,14 +174,16 @@ export default {
       cname : this.$store.state.cname,
       logauth: this.$store.state.uauth,
       logname: this.formInline.logname,
-      uname: this.$store.state.uname,
+      uname: this.formInline.uname,
+      uptime: this.formInline.s_time[0],
+       loginf:this.formInline.s_time[1]
     },{
           headers: {
             'Content-Type':'application/json'
           }
     }).then(Response=>{
       this.listData=Response.data;
-       //console.log(Response);
+      //console.log(Response);
     })
   },
 
@@ -189,7 +192,37 @@ export default {
    */
   methods: {
     search(){
+         let year = new Date().getFullYear();
+        let month = new Date().getMonth() +1;
+        let day = new Date().getDate();
+        let hour = new Date().getHours();
+        let minute = new Date().getMinutes();
+        let second = new Date().getSeconds();
+        let end = year + '-' + month + '-' + day + ' ' + hour +':'+ minute +':'+ second;
       console.log(this.formInline.s_time);
+       var that=this;
+       var start;
+       if(this.formInline.s_time==null){
+        start = new Date();
+        start.setTime(start.getTime() - 3600 * 1000 * 24 * 30000);
+       }else{
+        start = this.formInline.s_time[0];
+       }
+    this.$axios.post('http://localhost:8081/log/getCompany',{
+      cname : this.$store.state.cname,
+      logauth: this.$store.state.uauth,
+      logname: this.formInline.logname,
+      uname: this.formInline.uname,
+      uptime: start,
+      loginf: end
+    },{
+          headers: {
+            'Content-Type':'application/json'
+          }
+    }).then(Response=>{
+      this.listData=Response.data;
+      console.log(Response.data);
+    })
     },
     toResult(i,item){
     // console.log(item.logid);

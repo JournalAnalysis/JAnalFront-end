@@ -22,7 +22,7 @@
   </div></el-form-item> -->
 
       <el-form-item>
-        <el-button size="small" type="primary" icon="el-icon-search" @click="search">搜索</el-button>
+        <el-button size="small" type="primary" icon="el-icon-search" @click="onSearch">搜索</el-button>
       </el-form-item>
     </el-form>
     <!--列表-->
@@ -152,7 +152,6 @@ export default {
           }else{
             that.$router.push({ path: '/admin/result/Result' }); 
           }
-    }
     },
     // 分页插件事件
     callFather(parm) {
@@ -161,7 +160,7 @@ export default {
       this.getdata(this.formInline)
     },
     // 搜索事件
-    search() { 
+    onSearch() { 
       var that=this;
     var uname = this.$store.state.uname;
     this.$axios.post('http://localhost:8081/log/getHistory',{
@@ -175,10 +174,8 @@ export default {
       that.listData=Response.data;
        console.log(Response);
     })
-      // console.log(this.formInline.s_logname);
-      //  console.log(this.formInline.s_uptime[0]);
     },
-  }
+  }}
 </script>
 
 <style scoped>
