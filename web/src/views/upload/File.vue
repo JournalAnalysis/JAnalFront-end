@@ -68,19 +68,21 @@ import { Form } from 'element-ui';
       UploadSubmit(param){
         var that = this;
       this.file = param.file;
-      console.log(param.file);
+      // console.log(param.file);
       var file_form = new FormData(); //获取上传表单（文件）
-      for(let key in this.form){
-        file_form.append(key,this.form[key]);
-      }
+      // for(let key in this.form){
+      //   file_form.append(key,this.form[key]);
+      // }
       file_form.append("file", this.file);
+      file_form.append("uname", this.$store.state.uname);
       this.$axios({
         url: "http://localhost:8081/user/upload/file",
         method: "POST",
         headers: {
-          token: localStorage.getItem("token"),
-        },
-        data: file_form,
+            'Content-Type':'application/json'
+          },
+        data: 
+          file_form
       })
         .then((res) => {
           that.form.logid = res.data.fileName;
