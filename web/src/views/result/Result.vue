@@ -1,14 +1,19 @@
 <template>
   <div id="app">
     <ul class="charts">
-      <label value="日志编号为：">{{logid}}</label>
+      <el-form>
+        <el-form-item height="10" label="日志编号：">
+          <el-col span="8"><label>{{logid}}</label></el-col></el-form-item>
+        <!-- <el-form-item >
+          <el-col span="8"></el-col></el-form-item> -->
       <li><ISPChart /></li>
       <li><TopNChart /></li>
       <li><AccessTimeChart /></li>
       <li><AccessSourceChart /></li>
       <li><SearchEnginesChart /></li>
       <li><AccessOSChart /></li>
-      <li><AccessAreaChart /></li>
+      <li><AccessAreaChart /></li></el-form>
+      
     </ul>  
   </div>
 

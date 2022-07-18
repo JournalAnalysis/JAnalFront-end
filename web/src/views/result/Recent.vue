@@ -9,11 +9,11 @@
       <el-breadcrumb-item>交易订单</el-breadcrumb-item>
     </el-breadcrumb> -->
     <!--列表-->
-    <label>显示三天内上传的数据</label>
+            <label>显示三天内上传的数据</label>
     <el-table size="small" :data="listData" highlight-current-row border style="width: 100%;">
       <!-- <el-table-column align="center" type="index" width="60">
       </el-table-column> -->
-      <el-table-column sortable prop="logid" label="编号" width="200" show-overflow-tooltip>
+      <el-table-column sortable prop="logid" label="日志编号" width="120" show-overflow-tooltip>
       </el-table-column>
       <el-table-column sortable prop="logname" label="日志名称" width="140" show-overflow-tooltip>
               <!-- <template slot-scope="scope">
@@ -22,11 +22,24 @@
       </el-table-column>
       <el-table-column sortable prop="uptime" label="上传日期" width="140" show-overflow-tooltip>
       </el-table-column>
-      <el-table-column sortable prop="loginf" label="日志描述" width="140" show-overflow-tooltip>
+      <el-table-column sortable prop="loginf" label="日志描述" width="200" show-overflow-tooltip>
       </el-table-column>
-      <el-table-column sortable prop="logstate" label="处理状态" width="140" show-overflow-tooltip>
+             <el-table-column
+               prop="logstate"
+               label="状态"
+             >
+               <template slot-scope="scope">
+                 <span v-if="scope.row.logstate==='underway'" style="color: orange">进行中</span>
+                 <span v-else-if="scope.row.logstate==='finish'"  style="color: green">已完成</span>
+               </template>
+             </el-table-column>
+      <el-table-column sortable prop="load" label="处理进度" width="140" show-overflow-tooltip>
+        
+         <template slot-scope="scope">
+                <el-progress :text-inside="true" :stroke-width="16" :percentage="scope.row.progress"></el-progress>
+                 </template>
       </el-table-column>
-      <el-table-column align="center" label="操作" min-width="150">
+      <el-table-column align="center" label="操作" min-width="100">
         <template slot-scope="scope">
           <el-button size="mini" @click="checkResult(scope.$index, scope.row)">查看</el-button>
         </template>
@@ -48,7 +61,9 @@ export default {
         cname:'',
         loginf:'',
         logname:'',
-        uptime:''
+        uptime:'',
+        load:'',
+        logstate:''
        }
       ]
     }
@@ -60,6 +75,9 @@ export default {
     checkResult(i, item){
      // console.log(item.logid);
      var that = this;
+     if(item.logstate=='underway'){
+      this.$message.error('正在处理中，请稍候。')
+     }else{
       this.$store.commit('uplogid',item.logid);
       console.log(this.$store.state.logid);
       if(this.$store.state.utype=="idi"){
@@ -69,7 +87,7 @@ export default {
           }else{
             that.$router.push({ path: '/admin/result/Result' }); 
           }
-    }
+    }}
   },
   /**
    * 创建完毕
@@ -96,8 +114,17 @@ export default {
           }
     }).then(Response=>{
        this.listData=Response.data;
-       console.log(Response);
+       var j = Response.data.length;
+       for(var i = 0;i<j;i++){
+        if(Response.data[i].logstate=='underway'){
+          this.listData[i].progress=0
+        }else{
+          this.listData[i].progress=100;
+        }
+       }
+       console.log(Response.data.length);
     })
+    
   }
 }
 

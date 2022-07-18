@@ -34,7 +34,7 @@ export default {
   created() {
     var timer = 10;
     if(this.$store.state.utype!="adm"){
-      this.$message.error("权限错误！");
+      // this.$message.error("权限错误！");
       timer = setInterval(()=>{
         timer--;
         if(timer==0){

@@ -3,20 +3,20 @@
  */
 <template>
   <div>
-    <el-form ref="form" :model="form" label-width="80px">
+    <el-form ref="form" :model="form" label-width="100px">
     
-    <el-form-item>
+    <!-- <el-form-item>
         <el-radio v-model="form.radio" label="1">输入网址</el-radio>
         <el-radio v-model="form.radio" label="2">输入数据库地址</el-radio>
-    </el-form-item>
-    <el-form-item label="地址"><el-col span="15">  
+    </el-form-item> -->
+    <el-form-item label="目标地址："><el-col span="10">  
         <el-input v-model="form.loglink" placeholder="请输入地址"></el-input></el-col>
     </el-form-item>
-    <el-form-item label="日志名称"><el-col span="15">  
+    <el-form-item label="日志名称："><el-col span="10">  
         <el-input v-model="form.logname" placeholder="请输入日志名称"></el-input></el-col>
     </el-form-item>
-    <el-form-item label="日志描述">
-        <el-col span="15">  
+    <el-form-item label="日志描述：">
+        <el-col span="10">  
         <el-input
           type="textarea"
           v-model="form.loginf"
@@ -70,7 +70,7 @@ export default {
           that.form.loginf = '';
           that.form.logname = '';
           that.form.loglink = '';
-          that.$message.success(response.data);
+          that.$message.success("上传成功！请在近期上传界面查看处理状态。");
         })
     }
   }
@@ -79,7 +79,7 @@ export default {
 
 <style scoped>
 .user-search {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 .userRole {
   width: 100%;

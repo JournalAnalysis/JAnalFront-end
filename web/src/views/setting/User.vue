@@ -21,7 +21,6 @@
     <el-button type="primary" @click="onMod">修改个人信息</el-button>
   </el-form-item>
 </el-form>
-    <el-button type="primary" @click="onCheck">查看</el-button>
   </div>
 </template>
 

@@ -3,8 +3,8 @@
  */
 <template>
   <div>
-    <el-form ref="form" :model="form" label-width="80px">
-    <el-upload
+    <el-form ref="form" :model="form" label-width="100px">
+    <el-form-item label="上传文件："><el-upload
     :limit="1"
     class="upload-demo"
     ref="upload"
@@ -20,12 +20,15 @@
     <i class="el-icon-upload"></i>
     <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
     <div class="el-upload__tip" slot="tip">只能上传log/csv文件</div>
-    </el-upload>
+    </el-upload></el-form-item>
+    
 
-        <el-col span="15">  
-        <el-input v-model="form.logname" placeholder="请输入日志名称"></el-input>
-        </el-col>
-        <el-col span="15">  
+        <el-form-item label="日志名称：">  
+          <el-col span="10"> 
+        <el-input v-model="form.logname" placeholder="请输入日志名称"></el-input></el-col>
+        </el-form-item>
+        <el-form-item label="日志描述："> 
+        <el-col span="10">  
         <el-input
           type="textarea"
           v-model="form.loginf"
@@ -33,8 +36,9 @@
           placeholder="请输入描述"
           show-word-limit>
           </el-input></el-col>
-    <el-form-item></el-form-item>
-    <el-button type="primary" @click="onSubmit">提交</el-button>
+        </el-form-item>
+    <el-form-item><el-button type="primary" @click="onSubmit">提交</el-button></el-form-item>
+    
     </el-form>
   </div>
 </template>
@@ -114,7 +118,7 @@ import { Form } from 'element-ui';
           that.form.loginf = '';
           that.form.logname = '';
           that.fileList = [];
-          that.$message.success(response.data);
+          that.$message.success("上传成功！请在近期上传界面查看处理状态。");
 
         })
       },
