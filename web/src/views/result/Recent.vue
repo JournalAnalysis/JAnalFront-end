@@ -15,7 +15,7 @@
       </el-table-column> -->
       <el-table-column sortable prop="logid" label="日志编号" width="120" show-overflow-tooltip>
       </el-table-column>
-      <el-table-column sortable prop="logname" label="日志名称" width="140" show-overflow-tooltip>
+      <el-table-column sortable prop="logname" label="日志名称" width="120" show-overflow-tooltip>
               <!-- <template slot-scope="scope">
                     <span>{{scope.row[scope.column.property]}}</span>
               </template>         -->
@@ -33,7 +33,7 @@
                  <span v-else-if="scope.row.logstate==='finish'"  style="color: green">已完成</span>
                </template>
              </el-table-column>
-      <el-table-column sortable prop="load" label="处理进度" width="140" show-overflow-tooltip>
+      <el-table-column sortable prop="load" label="处理进度" width="160" show-overflow-tooltip>
         
          <template slot-scope="scope">
                 <el-progress :text-inside="true" :stroke-width="16" :percentage="scope.row.progress"></el-progress>

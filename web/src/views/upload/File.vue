@@ -37,7 +37,7 @@
           show-word-limit>
           </el-input></el-col>
         </el-form-item>
-    <el-form-item><el-button type="primary" @click="onSubmit">提交</el-button></el-form-item>
+    <el-form-item><el-button type="primary" :disabled="(botAble===0)" @click="onSubmit">提交</el-button></el-form-item>
     
     </el-form>
   </div>
@@ -49,6 +49,7 @@ import { Form } from 'element-ui';
   export default {
     data() {
       return {
+        botAble:0,
         file:{
           uname:'',
         },
@@ -68,7 +69,9 @@ import { Form } from 'element-ui';
 
   },
     methods: {
-      
+      checkReady(){
+
+      },
       UploadSubmit(param){
         var that = this;
       this.file = param.file;
@@ -90,7 +93,8 @@ import { Form } from 'element-ui';
       })
         .then((res) => {
           that.form.logid = res.data.fileName;
-          console.log(res);
+          console.log(res.data.fileName);
+          that.botAble=1;
           // console.log(that.logname);
         })
         .catch((err) => {
