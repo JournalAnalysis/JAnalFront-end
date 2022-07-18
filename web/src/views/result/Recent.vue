@@ -9,7 +9,7 @@
       <el-breadcrumb-item>交易订单</el-breadcrumb-item>
     </el-breadcrumb> -->
     <!--列表-->
-            <label>显示三天内上传的数据</label>
+            <label>显示最近三天内上传的数据</label>
     <el-table size="small" :data="listData" highlight-current-row border style="width: 100%;">
       <!-- <el-table-column align="center" type="index" width="60">
       </el-table-column> -->
@@ -29,7 +29,7 @@
                label="状态"
              >
                <template slot-scope="scope">
-                 <span v-if="scope.row.logstate==='underway'" style="color: orange">进行中</span>
+                 <span v-if="scope.row.logstate!='finish'" style="color: orange">进行中</span>
                  <span v-else-if="scope.row.logstate==='finish'"  style="color: green">已完成</span>
                </template>
              </el-table-column>
@@ -56,6 +56,7 @@ import Pagination from '../../components/Pagination'
 export default {
   data() {
     return {
+      setInterval:setInterval(this.updateProgress,5000),
       listData: [{
         logid:'',
         cname:'',
@@ -75,7 +76,7 @@ export default {
     checkResult(i, item){
      // console.log(item.logid);
      var that = this;
-     if(item.logstate=='underway'){
+     if(item.logstate!='finish'){
       this.$message.error('正在处理中，请稍候。')
      }else{
       this.$store.commit('uplogid',item.logid);
@@ -87,7 +88,52 @@ export default {
           }else{
             that.$router.push({ path: '/admin/result/Result' }); 
           }
-    }}
+    }},
+    updateProgress(){
+
+    var that=this;
+         let year = new Date().getFullYear();
+        let month = new Date().getMonth() +1;
+        let day = new Date().getDate();
+        let hour = new Date().getHours();
+        let minute = new Date().getMinutes();
+        let second = new Date().getSeconds();
+        let end = year + '-' + month + '-' + day + ' ' + hour +':'+ minute +':'+ second;
+    const start = new Date();
+    start.setTime(start.getTime() - 3600 * 1000 * 24 * 3);
+    console.log(end+start);
+    this.$axios.post('http://localhost:8081/log/getRecent',{
+      uname:this.$store.state.uname,
+      uptime: end,
+      loginf: start
+    },{
+          headers: {
+            'Content-Type':'application/json'
+          }
+    }).then(Response=>{
+       this.listData=Response.data;
+       var j = Response.data.length;
+       for(var i = 0;i<j;i++){
+        if(Response.data[i].logstate!='finish'){
+          switch(Response.data[i].logstate){
+            case 'underway':this.listData[i].progress=0;break;
+            case 'underway1':this.listData[i].progress=14;break;
+            case 'underway2':this.listData[i].progress=31;break;
+            case 'underway3':this.listData[i].progress=46;break;
+            case 'underway4':this.listData[i].progress=61;break;
+            case 'underway5':this.listData[i].progress=78;break;
+            case 'underway6':this.listData[i].progress=89;break;
+          }
+        }else{
+          this.listData[i].progress=100;
+        }
+       }
+       console.log(Response.data.length);
+    })
+    setTimeout(this.updateProgress,5000);
+    this.setInterval;
+  
+    },
   },
   /**
    * 创建完毕
@@ -116,16 +162,26 @@ export default {
        this.listData=Response.data;
        var j = Response.data.length;
        for(var i = 0;i<j;i++){
-        if(Response.data[i].logstate=='underway'){
-          this.listData[i].progress=0
+        if(Response.data[i].logstate!='finish'){
+          switch(Response.data[i].logstate){
+            case 'underway':this.listData[i].progress=0;break;
+            case 'underway1':this.listData[i].progress=14;break;
+            case 'underway2':this.listData[i].progress=31;break;
+            case 'underway3':this.listData[i].progress=46;break;
+            case 'underway4':this.listData[i].progress=61;break;
+            case 'underway5':this.listData[i].progress=78;break;
+            case 'underway6':this.listData[i].progress=89;break;
+          }
         }else{
           this.listData[i].progress=100;
         }
        }
        console.log(Response.data.length);
     })
-    
+    setTimeout(this.updateProgress,5000);
+    this.setInterval;
   }
+
 }
 
 </script>
