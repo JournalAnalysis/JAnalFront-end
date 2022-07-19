@@ -36,6 +36,7 @@ export default {
         },
         series: [
           {
+            name: "时间",
             data: [],
             type: "line",
             smooth: true,

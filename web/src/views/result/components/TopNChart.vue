@@ -29,7 +29,7 @@ export default {
         },
         series: [
           {
-            name: "Nightingale Chart",
+            name: "topN",
             type: "pie",
             radius: [25, 90],
             center: ["50%", "50%"],

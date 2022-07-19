@@ -47,7 +47,7 @@ export default {
       //配置属性
       series: [
         {
-          name: "数据",
+          name: "地区",
           zoom: 1.2,
           type: "map",
           mapType: "china",

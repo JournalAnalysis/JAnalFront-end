@@ -36,7 +36,7 @@ export default {
         },
         series: [
           {
-            name: "Access From",
+            name: "操作系统",
             type: "pie",
             radius: ["40%", "70%"],
             avoidLabelOverlap: false,

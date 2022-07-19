@@ -35,7 +35,7 @@ export default {
         },
         series: [
           {
-            name: "Access From",
+            name: "方式",
             type: "pie",
             radius: "50%",
             data: [

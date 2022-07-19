@@ -38,6 +38,7 @@ body {
     box-sizing: border-box;
     padding: 0px;
     margin: 0px;
+    background-color: #f5f5f5;
 }
 #app {
     font-family: "Avenir", Helvetica, Arial, sans-serif;

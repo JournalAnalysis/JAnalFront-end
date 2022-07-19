@@ -32,7 +32,7 @@ export default {
 
         series: [
           {
-            name: "Access From",
+            name: "浏览器",
             type: "pie",
             radius: "50%",
             data: [
