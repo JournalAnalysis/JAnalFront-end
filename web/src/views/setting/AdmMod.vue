@@ -17,9 +17,6 @@
           placeholder="企业信息"
           show-word-limit></el-input></el-col>
   </el-form-item> -->
-<el-form-item><el-button type="primary" @click="onSend">发送验证码</el-button></el-form-item>
-  <el-form-item label="输入验证码" prop="emailcode"><el-col span="10"><el-input type="code" v-model="ruleForm.emailcode" autocomplete="off"></el-input></el-col>
-  </el-form-item>
   <el-form-item>
     <el-button type="primary" @click="onSubmit">确认修改</el-button>
     <el-button type="primary" @click="goBack">返回</el-button>
@@ -46,7 +43,6 @@ import Pagination from '../../components/Pagination'
             password:'',
             checkpass:'',
             ccode:'',
-            emailcode:'',
             uname:''
         },
         rules: {
@@ -55,7 +51,6 @@ import Pagination from '../../components/Pagination'
           { required: true, message: '请确认密码', trigger: 'blur' },
           { validator: validatePass, trigger: 'blur'}
         ],
-        emailcode: [{ required: true, message: '请输入验证码', trigger: 'blur' }],
         }
       };
     },

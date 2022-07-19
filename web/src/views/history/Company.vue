@@ -10,7 +10,7 @@
       <el-form-item>
         <el-input size="small" clearable v-model="formInline.uname" label="上传用户" placeholder="输入上传用户名"></el-input>
       </el-form-item>
-      <el-form-item label="选择日期">
+      <el-form-item label="选择日期:">
         <div class="block">
         <el-date-picker
         clearable="false"

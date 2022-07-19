@@ -7,20 +7,6 @@
       <el-form-item label="搜索日志名称：">
         <el-input size="small" v-model="formInline.s_logname" clearable placeholder="输入日志名称"></el-input>
       </el-form-item>
-      <!-- <el-form-item label="选择日期">
-        <div class="block">
-        <el-date-picker
-        v-model="formInline.s_uptime"
-        type="daterange"
-        align="right"
-        unlink-panels
-        range-separator="至"
-        start-placeholder="开始日期"
-        end-placeholder="结束日期"
-        :picker-options="pickerOptions">
-        </el-date-picker>
-  </div></el-form-item> -->
-
       <el-form-item>
         <el-button size="small" type="primary" icon="el-icon-search" @click="onSearch">搜索</el-button>
       </el-form-item>
@@ -29,11 +15,11 @@
     <el-table size="small" :data="listData" highlight-current-row v-loading="loading" border element-loading-text="拼命加载中" style="width: 100%;">
       <el-table-column align="center" type="index" width="60">
       </el-table-column>
-      <el-table-column sortable prop="logid" label="日志编号" width="170" show-overflow-tooltip>
+      <el-table-column sortable prop="logid" label="日志编号" width="160" show-overflow-tooltip>
       </el-table-column>
-      <el-table-column sortable prop="logname" label="日志名称" width="150" show-overflow-tooltip>
+      <el-table-column sortable prop="logname" label="日志名称" width="160" show-overflow-tooltip>
       </el-table-column>
-      <el-table-column sortable prop="uptime" label="上传日期" width="150" show-overflow-tooltip>
+      <el-table-column sortable prop="uptime" label="上传日期" width="160" show-overflow-tooltip>
       </el-table-column>
       <el-table-column sortable prop="logstate" label="处理状态" width="160" show-overflow-tooltip>
       </el-table-column>
@@ -43,13 +29,10 @@
         </template>
       </el-table-column>
     </el-table>
-    <!-- 分页组件 -->
-    <!-- <Pagination v-bind:child-msg="pageparm" @callFather="callFather"></Pagination> -->
   </div>
 </template>
 
 <script>
-import Pagination from '../../components/Pagination'
 export default {
   data() {
     return {
@@ -110,11 +93,7 @@ export default {
   },
   // 注册组件
   components: {
-    Pagination
   },
-  /**
-   * 数据发生改变
-   */
 
   /**
    * 创建完毕

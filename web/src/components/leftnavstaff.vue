@@ -49,21 +49,21 @@ export default {
       data: [
         {
           menuid: 1,
-          icon: 'li-icon-xiangmuguanli',
+          icon: 'li-icon-dingdanguanli',
           menuname: '日志上传',
           hasThird: null,
           url: null,
           menus: [
             {
               menuid: 2,
-              icon: 'icon-cat-skuQuery',
+              icon: 'li-icon-dingdanguanli',
               menuname: '上传文件',
               hasThird: 'N',
               url: 'staff/upload/File',
               menus: null
             },{
               menuid: 3,
-              icon: 'icon-cat-skuQuery',
+              icon: 'li-icon-dingdanguanli',
               menuname: '输入地址',
               hasThird: 'N',
               url: 'staff/upload/Address',
@@ -80,7 +80,7 @@ export default {
           menus: [
             {
               menuid: 72,
-              icon: 'icon-cus-manage',
+              icon: 'li-icon-xitongguanli',
               menuname: '近期上传',
               hasThird: 'N',
               url: 'staff/result/Recent',
@@ -88,7 +88,7 @@ export default {
             },
             {
               menuid: 174,
-              icon: 'icon-cms-manage',
+              icon: 'li-icon-shujujiankong',
               menuname: '分析结果',
               hasThird: 'N',
               url: 'staff/result/Result',
@@ -98,14 +98,14 @@ export default {
         },
         {
           menuid: 150,
-          icon: 'li-icon-shangchengxitongtubiaozitihuayuanwenjian91',
+          icon: 'li-icon-gongsiguanli',
           menuname: '历史数据',
           hasThird: null,
           url: null,
           menus: [
             {
               menuid: 159,
-              icon: 'icon-provider-manage',
+              icon: 'li-icon-gongsiguanli',
               menuname: '分析历史',
               hasThird: 'N',
               url: 'staff/history/History',
@@ -113,7 +113,7 @@ export default {
             },
             {
               menuid: 160,
-              icon: 'icon-provider-manage',
+              icon: 'li-icon-gongsiguanli',
               menuname: '企业数据',
               hasThird: 'N',
               url: 'staff/history/Company',

@@ -49,21 +49,21 @@ export default {
       data: [
         {
           menuid: 1,
-          icon: 'li-icon-shujujiankong',
+          icon: 'li-icon-dingdanguanli',
           menuname: '日志上传',
           hasThird: null,
           url: null,
           menus: [
             {
               menuid: 2,
-              icon: 'icon-cat-skuQuery',
+              icon: 'li-icon-dingdanguanli',
               menuname: '上传文件',
               hasThird: 'N',
               url: 'upload/File',
               menus: null
             },{
               menuid: 3,
-              icon: 'icon-cat-skuQuery',
+              icon: 'li-icon-dingdanguanli',
               menuname: '输入地址',
               hasThird: 'N',
               url: 'upload/Address',
@@ -80,7 +80,7 @@ export default {
           menus: [
             {
               menuid: 72,
-              icon: 'icon-cus-manage',
+              icon: 'li-icon-xitongguanli',
               menuname: '近期上传',
               hasThird: 'N',
               url: 'result/Recent',
@@ -105,7 +105,7 @@ export default {
           menus: [
             {
               menuid: 159,
-              icon: 'icon-provider-manage',
+              icon: 'li-icon-gongsiguanli',
               menuname: '分析历史',
               hasThird: 'N',
               url: 'history/History',
