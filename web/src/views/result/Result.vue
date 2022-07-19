@@ -1,55 +1,51 @@
 <template>
   <div id="app">
     <ul class="charts">
-      <el-form>
+      <!-- <el-form id="resForm">
         <el-form-item height="10" label="日志编号：">
-          <el-col span="8"><label>{{logid}}</label></el-col></el-form-item>
-        <!-- <el-form-item >
-          <el-col span="8"></el-col></el-form-item> -->
-      <li><ISPChart /></li>
-      <li><TopNChart /></li>
-      <li><AccessTimeChart /></li>
-      <li><AccessSourceChart /></li>
-      <li><SearchEnginesChart /></li>
-      <li><AccessOSChart /></li>
-      <li><AccessAreaChart /></li></el-form>
-      
+          <el-col span="8"><label>{{logid}}</label></el-col></el-form-item> -->
+          <label>日志编号：{{logid}}</label>
+          <el-card class="box-card" shadow="hover">  <div slot="header" class="clearfix">
+          <span>运营商</span></div>
+          <li><ISPChart /></li>
+          </el-card>
+
+
+          <el-card class="box-card" shadow="hover">  <div slot="header" class="clearfix">
+          <span>TopN</span></div>
+          <li><TopNChart /></li>
+          </el-card>
+
+
+          <el-card class="box-card" shadow="hover">  <div slot="header" class="clearfix">
+          <span>访问时间</span></div>
+          <li><AccessTimeChart /></li>
+          </el-card>
+
+          <el-card class="box-card" shadow="hover">  <div slot="header" class="clearfix">
+          <span>访问方式占比</span></div>
+          <li><AccessSourceChart /></li>
+          </el-card>
+          
+          <el-card class="box-card" shadow="hover">  <div slot="header" class="clearfix">
+          <span>操作系统占比</span></div>
+          <li><SearchEnginesChart /></li>
+          </el-card>
+          
+          <el-card class="box-card" shadow="hover">  <div slot="header" class="clearfix">
+          <span>浏览器占比</span></div>
+          <li><AccessOSChart /></li>
+          </el-card>
+          
+          <el-card class="box-card">  <div slot="header" class="clearfix">
+          <span>地区分布</span></div>
+          <li><AccessAreaChart /></li>
+          </el-card>              
+      <!-- </el-form> -->
     </ul>  
   </div>
 
-  <!-- <div id="result">
-    <ul class="charts">
-    <el-row :gutter="23" class="elrow">
-      <el-col :span="8" class="text-c">
-      <li><ISPChart /></li>
-      </el-col>
-      <el-col :span="8" class="text-c">
-      <li><AccessTimeChart /></li>
-      </el-col>
-    </el-row>
-
-    <el-row :gutter="23" class="elrow">
-      <el-col :span="8" class="text-c">
-      <li><TopNChart /></li>
-      </el-col>
-      <el-col :span="8" class="text-c">
-      <li><AccessSourceChart /></li>
-      </el-col>
-      <el-col :span="8" class="text-c">
-      <li><SearchEnginesChart /></li>
-      </el-col>
-      <el-col :span="8" class="text-c">
-      <li><AccessOSChart /></li>
-      </el-col>
-    </el-row>
-
-    <el-row :gutter="23" class="elrow">
-      <el-col :span="8" class="text-c">
-      <li><AccessAreaChart /></li>
-      </el-col>
-    </el-row>
-    </ul>  
-  </div> -->
+ 
 </template>
 <script>
 import ISPChart from './components/ISPChart.vue'
@@ -106,6 +102,45 @@ export default {
   height: 100%;
   box-sizing: border-box;
 }
+.logid{
+  font-size: 24px
+}
+.text {
+    font-size: 14px;
+  }
+
+  .item {
+    margin-bottom: 18px;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: "";
+  }
+  .clearfix:after {
+    clear: both
+  }
+
+  .box-card {
+    width: 900px;
+    height: 500px;
+  }
+  /* .el-carousel__item h3 {
+    color: #475669;
+    font-size: 18px;
+    opacity: 0.75;
+    line-height: 300px;
+    margin: 0;
+  }
+  
+  .el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
+  }
+  
+  .el-carousel__item:nth-child(2n+1) {
+    background-color: #d3dce6;
+  } */
 .stbox {
   width: 100%;
   height: 100%;
@@ -123,7 +158,7 @@ export default {
 }
 .charts li{
   width: 400px;
-  height: 300px;
+  height: 600px;
   float: left;
   background-color: white;
   margin-bottom: 10px;

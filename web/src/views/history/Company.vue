@@ -52,9 +52,9 @@
     <!-- <Pagination v-bind:child-msg="pageparm" @callFather="callFather"></Pagination> -->
     <!-- 编辑界面 -->
     <el-dialog :title="title" :visible.sync="editFormVisible" width="50%" @click="closeDialog('editForm')">
-      <el-form label-width="120px" :model="editForm" ref="editForm">
+      <el-form label-width="80px" :model="editForm" ref="editForm">
         <el-row>
-          <el-col :span="15">
+          <el-col :span="10">
             <el-form-item label="日志编号">
               <el-input size="small" v-model="editForm.logid" auto-complete="off" disabled></el-input>
             </el-form-item>
@@ -64,6 +64,8 @@
             <el-form-item label="上传用户">
               <el-input size="small" v-model="editForm.uname" auto-complete="off" disabled></el-input>
             </el-form-item>
+          </el-col>
+          <el-col :span="10">
             <el-form-item label="企业名称">
               <el-input size="small" v-model="editForm.cname" auto-complete="off" disabled></el-input>
             </el-form-item>
@@ -74,10 +76,12 @@
               <el-input size="small" v-model="editForm.uptime" auto-complete="off" disabled></el-input>
             </el-form-item>
           </el-col>
-        </el-row>
+          <el-col :span="20">
         <el-form-item label="日志信息">
           <el-input size="small" type="textarea" v-model="editForm.loginf" auto-complete="off" disabled></el-input>
         </el-form-item>
+          </el-col>
+        </el-row>
       </el-form>
     </el-dialog>
   </div>
