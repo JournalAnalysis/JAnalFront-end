@@ -39,7 +39,7 @@ export default {
         xAxis: {},
         series: [
           {
-            name: "访问次数",
+            name: "运营商",
             type: "bar",
             data: [],
           },

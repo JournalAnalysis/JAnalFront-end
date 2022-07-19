@@ -19,9 +19,9 @@
     <el-form-item label="邀请码"><el-col span="12">  
         <el-input disabled v-model="form.companycode"></el-input></el-col>
     </el-form-item>
-  <el-form-item>
-    <el-button type="primary" @click="onMod">修改企业信息</el-button>
-  </el-form-item>
+  <!-- <el-form-item>
+    <el-button type="primary" @click="onMod">修改密码</el-button>
+  </el-form-item> -->
 </el-form>
   </div>
 </template>

@@ -3,8 +3,10 @@
  */
 <template>
   <div>
-    <el-form ref="form" :model="form" label-width="100px">
-    <el-form-item label="上传文件："><el-upload
+    <el-form
+    ref="form" :model="form" label-width="100px">
+    <el-form-item
+     label="上传文件："><el-upload
     :limit="1"
     class="upload-demo"
     ref="upload"
@@ -17,8 +19,11 @@
     :http-request="UploadSubmit"
     multiple
     >
+    <div     v-loading="loading"
+    element-loading-text="文件上传中" >
     <i class="el-icon-upload"></i>
-    <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+    <div class="el-upload__text"   
+    >将文件拖到此处，或<em>点击上传</em></div></div>
     <div class="el-upload__tip" slot="tip">只能上传log/csv文件</div>
     </el-upload></el-form-item>
 
@@ -49,6 +54,7 @@ import { Form } from 'element-ui';
   export default {
     data() {
       return {
+        loading:false,
         botAble:0,
         file:{
           uname:'',
@@ -73,6 +79,7 @@ import { Form } from 'element-ui';
       },
 
       UploadSubmit(param){
+        this.loading=true;
         var that = this;
       this.file = param.file;
       // console.log(param.file);
@@ -96,6 +103,7 @@ import { Form } from 'element-ui';
           console.log(res.data.fileName);
           that.botAble=1;
           // console.log(that.logname);
+          that.loading=false;
         })
         .catch((err) => {
           console.log(err);

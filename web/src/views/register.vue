@@ -5,10 +5,10 @@
       <el-form-item prop="uname" label="请输入用户名：">
         <el-input type="text" v-model="ruleForm.uname" auto-complete="off" placeholder="用户名"></el-input>
       </el-form-item>
-      <el-form-item prop="password" label="请输入密码：">
+      <el-form-item prop="upassword" label="请输入密码：">
         <el-input type="password" v-model="ruleForm.upassword" auto-complete="off" placeholder="密码" show-password></el-input>
       </el-form-item>
-      <el-form-item prop="verpassword" label="请确认密码">
+      <el-form-item prop="verpassword" label="请确认密码:">
         <el-input type="password" v-model="ruleForm.verpassword" auto-complete="off" placeholder="确认密码" show-password></el-input>
       </el-form-item>
           <el-form-item prop="IdRule" label="请选择用户类型：">
@@ -17,36 +17,29 @@
           <el-radio label="2">企业管理</el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item prop="companyname" v-if="ruleForm.IdRule == 2" :rules="ruleForm.IdRule == '2' ? rules.customProID : [{ required: false}]" label="请输入企业名称：">
-        <el-input type="companyname" v-model="ruleForm.companyname" auto-complete="off" placeholder="企业名称"></el-input></el-form-item>
-        <el-form-item v-if="ruleForm.IdRule == 2" prop="companyinf" label="请输入企业信息：">
+      <el-form-item prop="cname" v-if="ruleForm.IdRule == 2" :rules="ruleForm.IdRule == '2' ? rules.customProID : [{ required: false}]" label="请输入企业名称：">
+        <el-input type="cname" v-model="ruleForm.cname" auto-complete="off" placeholder="企业名称"></el-input></el-form-item>
+        <el-form-item v-if="ruleForm.IdRule == 2" prop="cinf" label="请输入企业信息：">
         <el-input
           v-if="ruleForm.IdRule == 2"
           type="textarea"
-          v-model="ruleForm.companyinf"
+          v-model="ruleForm.cinf"
           maxlength="30"
           placeholder="企业信息"
           show-word-limit></el-input></el-form-item>
-      <el-form-item prop="email" label="请输入邮箱：">
+      <el-form-item prop="uemail" label="请输入邮箱：">
         <el-input type="text" v-model="ruleForm.uemail" auto-complete="off" placeholder="邮箱"></el-input>
       </el-form-item>
-      <!-- <el-form-item style="width:50%;">
-        <el-button type="primary" @click="sendcode()" :loading="sendcode">发送验证码</el-button>
-      </el-form-item> -->
-      <el-form-item prop="emailcode" label="请输入验证码：">
-        <el-input type="text" v-model="ruleForm.emailcode" auto-complete="off" placeholder="验证码"></el-input>
-      </el-form-item>
-      <el-form-item><el-button type="primary" @click="register()" >注册</el-button><el-button type="primary" @click="goBack()" >返回登陆界面</el-button></el-form-item>    
+      <el-form-item label-width="120px"><el-button type="primary" @click="register()" >注册</el-button><el-button type="primary" @click="goBack()" >返回</el-button></el-form-item>    
     </el-form>
   </div>
 </template>
 <script type="text/ecmascript-6">
-import { setCookie, getCookie, delCookie } from '../utils/util'
 export default {
   name: 'login',
   data() {
     var validatePass = (rule, value, callback) => {
-        if (value !== this.ruleForm.password) {
+        if (value !== this.ruleForm.upassword) {
           callback(new Error('两次输入密码不一致!'));
         }else {
           callback();
@@ -54,29 +47,27 @@ export default {
       }
     return {
       ruleForm: {
-        companyname:'',
-        companyinf:'',
+        cname:'',
+        cinf:'',
         uname:'',
         upassword:'',
         verpassword:'',
         uemail:'',
-        emailcode:'',
         IdRule:'1',
         utype:'',
-        utime:''
+        utime:'',
       },
       //rules前端验证
       rules: {
         uname: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
         upassword: [{ required: true, message: '请输入密码', trigger: 'blur' }],
-        companyname: [{ required: true, message: '请输入企业名称', trigger: 'blur' }],
-        companyinf: [{ required: true, message: '请输入企业信息', trigger: 'blur' }],
+        cname: [{ required: true, message: '请输入企业名称', trigger: 'blur' }],
+        cinf: [{ required: true, message: '请输入企业信息', trigger: 'blur' }],
         verpassword: [
           { required: true, message: '请确认密码', trigger: 'blur' },
           { validator: validatePass, trigger: 'blur'}
         ],
         uemail: [{ required: true, message: '请输入邮箱', trigger: 'blur' }],
-        emailcode: [{ required: true, message: '请输入验证码', trigger: 'blur' }],
       },
     }
     
@@ -99,7 +90,7 @@ export default {
           isReady = false;
         }
       }else{
-        if(this.ruleForm.uemail==''||this.ruleForm.uname==''||this.ruleForm.upassword==''||this.ruleForm.verpassword==''||this.ruleForm.emailcode==''||this.ruleForm.companyname==''||this.ruleForm.companyinf==''){
+        if(this.ruleForm.uemail==''||this.ruleForm.uname==''||this.ruleForm.upassword==''||this.ruleForm.verpassword==''||this.ruleForm.cname==''||this.ruleForm.cinf==''){
           isReady = false;
         }
       }
@@ -117,15 +108,25 @@ export default {
         let time = year + '-' + month + '-' + day + ' ' + hour +':'+ minute +':'+ second;
 
         this.ruleForm.utime = time;
+        this.ruleForm.uauth=this.ruleForm.cinf;
         // console.log(date);
         if(this.ruleForm.IdRule=='1'){
-          this.ruleForm.utype="ind";
+          this.ruleForm.utype="idi";
         }else if(this.ruleForm.IdRule=='2'){
           this.ruleForm.utype="adm";
         }
         this.$axios.post("http://localhost:8081/adm/register",this.ruleForm).then(function(response){
-          console.log(response);
-          that.$message.info(response.data);
+          //console.log(response);
+           that.$message.info(response.data);
+          that.ruleForm={        cname:'',
+        cinf:'',
+        uname:'',
+        upassword:'',
+        verpassword:'',
+        uemail:'',
+        IdRule:'1',
+        utype:'',
+        utime:''}
         })
       }
     }

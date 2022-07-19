@@ -1,6 +1,6 @@
 <template>
   <div class="login-wrap">
-    <el-form label-position="left" :model="loginForm" :rules="rules" ref="ruleForm" label-width="0px" class="demo-ruleForm login-container">
+    <el-form label-position="left" :model="loginForm" :rules="rules" ref="ruleForm" class="demo-ruleForm login-container">
       <h3 class="title">用户登录</h3>
       <el-form-item prop="uname">
         <el-input type="text" v-model="loginForm.uname" auto-complete="off" placeholder="账号"></el-input>

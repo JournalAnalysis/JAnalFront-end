@@ -115,15 +115,16 @@ export default {
        var j = Response.data.length;
        for(var i = 0;i<j;i++){
         if(Response.data[i].logstate!='finish'){
-          switch(Response.data[i].logstate){
-            case 'underway':this.listData[i].progress=0;break;
-            case 'underway1':this.listData[i].progress=14;break;
-            case 'underway2':this.listData[i].progress=31;break;
-            case 'underway3':this.listData[i].progress=46;break;
-            case 'underway4':this.listData[i].progress=61;break;
-            case 'underway5':this.listData[i].progress=78;break;
-            case 'underway6':this.listData[i].progress=89;break;
-          }
+          this.listData[i].progress=Response.data[i].logstate;
+          // switch(Response.data[i].logstate){
+          //   case 'underway':this.listData[i].progress=0;break;
+          //   case 'underway1':this.listData[i].progress='25.345';break;
+          //   case 'underway2':this.listData[i].progress=31;break;
+          //   case 'underway3':this.listData[i].progress=46;break;
+          //   case 'underway4':this.listData[i].progress=61;break;
+          //   case 'underway5':this.listData[i].progress=78;break;
+          //   case 'underway6':this.listData[i].progress=89;break;
+          // }
         }else{
           this.listData[i].progress=100;
         }
@@ -163,15 +164,7 @@ export default {
        var j = Response.data.length;
        for(var i = 0;i<j;i++){
         if(Response.data[i].logstate!='finish'){
-          switch(Response.data[i].logstate){
-            case 'underway':this.listData[i].progress=0;break;
-            case 'underway1':this.listData[i].progress=14;break;
-            case 'underway2':this.listData[i].progress=31;break;
-            case 'underway3':this.listData[i].progress=46;break;
-            case 'underway4':this.listData[i].progress=61;break;
-            case 'underway5':this.listData[i].progress=78;break;
-            case 'underway6':this.listData[i].progress=89;break;
-          }
+         this.listData[i].progress=Response.data[i].logstate;
         }else{
           this.listData[i].progress=100;
         }
