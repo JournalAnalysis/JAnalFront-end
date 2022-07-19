@@ -52,6 +52,9 @@ export default {
   },
   methods: {
     onSubmit(){
+              if(this.form.logname==''||this.form.loginf==''||this.form.loglink==''){
+          this.$message.error("请输入日志名称和描述！");
+        }else{
       var that = this;
         this.form.uname = this.$store.state.uname;
         this.form.cname = this.$store.state.cname;
@@ -71,7 +74,7 @@ export default {
           that.form.logname = '';
           that.form.loglink = '';
           that.$message.success("上传成功！请在近期上传界面查看处理状态。");
-        })
+        })}
     }
   }
 }

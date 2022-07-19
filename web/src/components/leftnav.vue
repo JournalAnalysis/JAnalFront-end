@@ -49,7 +49,7 @@ export default {
       data: [
         {
           menuid: 1,
-          icon: 'li-icon-xiangmuguanli',
+          icon: 'li-icon-shujujiankong',
           menuname: '日志上传',
           hasThird: null,
           url: null,
@@ -88,7 +88,7 @@ export default {
             },
             {
               menuid: 174,
-              icon: 'icon-cms-manage',
+              icon: 'li-icon-shujujiankong',
               menuname: '分析结果',
               hasThird: 'N',
               url: 'result/Result',
@@ -98,7 +98,7 @@ export default {
         },
         {
           menuid: 150,
-          icon: 'li-icon-shangchengxitongtubiaozitihuayuanwenjian91',
+          icon: 'li-icon-gongsiguanli',
           menuname: '历史数据',
           hasThird: null,
           url: null,

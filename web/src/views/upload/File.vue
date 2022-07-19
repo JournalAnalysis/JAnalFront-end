@@ -102,6 +102,9 @@ import { Form } from 'element-ui';
         });
       },
       onSubmit(){
+        if(this.form.logname==''||this.form.loginf==''){
+          this.$message.error("请输入日志名称和描述！");
+        }else{
         var that = this;
         this.form.uname = this.$store.state.uname;
         this.form.cname = this.$store.state.cname;
@@ -124,7 +127,7 @@ import { Form } from 'element-ui';
           that.fileList = [];
           that.$message.success("上传成功！请在近期上传界面查看处理状态。");
 
-        })
+        })}
       },
       handleRemove(file, fileList) {
       console.log(file, fileList);
