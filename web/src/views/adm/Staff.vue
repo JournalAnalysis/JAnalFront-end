@@ -43,7 +43,7 @@
             <el-form-item label="用户类型">
               <el-input size="small" v-model="editForm.utype" auto-complete="off" disabled></el-input>
             </el-form-item>
-            <el-form-item label="用户类型">
+            <el-form-item label="用户权限">
               <el-select v-model="editForm.value" placeholder="请选择">
               <el-option
               v-for="item in options"
