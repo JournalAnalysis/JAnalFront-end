@@ -54,7 +54,7 @@ export default {
         that.form.companyinf = response.data[0].cinf;
         that.form.companycode = response.data[0].ccode;
         that.$store.commit('upcname',response.data[0].cname);
-        that.$store.commit('upauth',"high");
+        that.$store.commit('upauth',"3");
     },)
   },
   methods: {
