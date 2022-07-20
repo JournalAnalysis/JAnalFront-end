@@ -58,7 +58,7 @@ export default {
       var that = this;
         this.form.uname = this.$store.state.uname;
         this.form.cname = this.$store.state.cname;
-        this.form.logauth = this.$store.state.auth;
+        this.form.logauth = this.$store.state.uauth;
         let year = new Date().getFullYear();
         let month = new Date().getMonth() +1;
         let day = new Date().getDate();
