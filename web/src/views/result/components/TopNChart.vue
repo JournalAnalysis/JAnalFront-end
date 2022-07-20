@@ -31,11 +31,26 @@ export default {
           {
             name: "topN",
             type: "pie",
-            radius: [25, 90],
+            radius: ['40%', '70%'],
             center: ["50%", "50%"],
-            roseType: "area",
+            // roseType: "area",
             itemStyle: {
-              borderRadius: 8,
+              borderRadius: 10,
+              borderColor: '#fff',
+              borderWidth: 2
+            },
+            label: {
+              show: true,
+            },
+            emphasis: {
+              label: {
+                show: true,
+                fontSize: '40',
+                fontWeight: 'bold'
+              }
+            },
+            labelLine: {
+              show: false
             },
             data: [
               // { value: 40, name: "rose 1" },
