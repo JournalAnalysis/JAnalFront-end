@@ -26,14 +26,14 @@
     >将文件拖到此处，或<em>点击上传</em></div></div>
     <div class="el-upload__tip" slot="tip">只能上传log/csv文件</div>
     </el-upload></el-form-item>
-    
 
-        <el-form-item label="日志名称：">  
-          <el-col span="10"> 
+
+        <el-form-item label="日志名称：">
+          <el-col span="10">
         <el-input v-model="form.logname" placeholder="请输入日志名称"></el-input></el-col>
         </el-form-item>
-        <el-form-item label="日志描述："> 
-        <el-col span="10">  
+        <el-form-item label="日志描述：">
+        <el-col span="10">
         <el-input
           type="textarea"
           v-model="form.loginf"
@@ -43,7 +43,7 @@
           </el-input></el-col>
         </el-form-item>
     <el-form-item><el-button type="primary" :disabled="(botAble===0)" @click="onSubmit">提交</el-button></el-form-item>
-    
+
     </el-form>
   </div>
 </template>
@@ -76,8 +76,8 @@ import { Form } from 'element-ui';
   },
     methods: {
       checkReady(){
-
       },
+
       UploadSubmit(param){
         this.loading=true;
         var that = this;
@@ -95,7 +95,7 @@ import { Form } from 'element-ui';
         headers: {
             'Content-Type':'application/json'
           },
-        data: 
+        data:
           file_form
       })
         .then((res) => {
